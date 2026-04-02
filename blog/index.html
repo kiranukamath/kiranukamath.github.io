@@ -1,0 +1,33 @@
+---
+layout: default
+title: Blog
+---
+
+<div class="blog-page">
+  <h1 class="sec-title">Blog</h1>
+  <p class="subtitle">Writing about backend engineering, distributed systems, fintech, and things I learn along the way.</p>
+
+  {% assign published_posts = site.posts %}
+  {% if published_posts.size > 0 %}
+  <div class="blog-list">
+    {% for post in published_posts %}
+    <a href="{{ post.url | relative_url }}" class="blog-list-item">
+      <div class="blog-list-meta">
+        <span class="blog-list-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+      </div>
+      <div class="blog-list-title">{{ post.title }}</div>
+      {% if post.excerpt %}
+      <div class="blog-list-excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</div>
+      {% endif %}
+      {% if post.tags and post.tags.size > 0 %}
+      <div class="blog-list-tags">
+        {% for tag in post.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+      </div>
+      {% endif %}
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="no-posts">No posts yet — check back soon.</p>
+  {% endif %}
+</div>

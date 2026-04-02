@@ -1,0 +1,57 @@
+---
+layout: default
+---
+<div class="post-wrap">
+
+  <a href="{{ '/blog/' | relative_url }}" class="post-back">← Back to all posts</a>
+
+  <header class="post-header">
+    <h1>{{ page.title }}</h1>
+    <div class="post-header-meta">
+      <span class="post-date">{{ page.date | date: "%B %-d, %Y" }}</span>
+      {% if page.tags and page.tags.size > 0 %}
+      <div class="post-header-tags">
+        {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post-body">
+    {{ content }}
+  </div>
+
+  <div class="post-share">
+    <h3>Share this post</h3>
+    <div class="share-btns">
+      <a class="btn btn-primary"
+         href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}"
+         target="_blank" rel="noopener">
+        Share on LinkedIn
+      </a>
+      {% if page.linkedin_summary %}
+      <button class="btn btn-outline" onclick="copyLinkedInPost(this)">
+        Copy LinkedIn Post Template
+      </button>
+      {% endif %}
+    </div>
+    {% if page.linkedin_summary %}
+    <div id="copy-confirm" class="copy-confirm" style="display:none">Copied! Paste it into your LinkedIn post.</div>
+    <script>
+    var linkedInText = {{ page.linkedin_summary | jsonify }};
+    function copyLinkedInPost(btn) {
+      navigator.clipboard.writeText(linkedInText).then(function() {
+        var confirm = document.getElementById('copy-confirm');
+        confirm.style.display = 'block';
+        btn.textContent = 'Copied!';
+        setTimeout(function() {
+          confirm.style.display = 'none';
+          btn.textContent = 'Copy LinkedIn Post Template';
+        }, 3000);
+      });
+    }
+    </script>
+    {% endif %}
+  </div>
+
+</div>

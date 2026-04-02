@@ -1,0 +1,34 @@
+title: Kiran U Kamath
+description: Senior Software Engineer — Fintech & Fraud Risk
+author: Kiran U Kamath
+baseurl: ""
+url: "https://kiranukamath.github.io"
+
+# Posts with future dates are hidden until that date
+future: false
+
+# _drafts/ folder is never included in production builds
+show_drafts: false
+
+permalink: /blog/:year/:month/:day/:title/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - BLOG_TEMPLATE.md
+  - vendor/
+  - .bundle/
+  - .DS_Store
