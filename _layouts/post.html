@@ -1,57 +1,120 @@
 ---
 layout: default
 ---
-<div class="post-wrap">
+<div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
 
-  <a href="{{ '/blog/' | relative_url }}" class="post-back">← Back to all posts</a>
+<article class="post-wrap">
+  <div class="post-container">
 
-  <header class="post-header">
-    <h1>{{ page.title }}</h1>
-    <div class="post-header-meta">
-      <span class="post-date">{{ page.date | date: "%B %-d, %Y" }}</span>
+    <nav class="post-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="{{ '/blog/' | relative_url }}">Blog</a>
+      <span aria-hidden="true">›</span>
+      <span class="breadcrumb-current">{{ page.title }}</span>
+    </nav>
+
+    <header class="post-header">
       {% if page.tags and page.tags.size > 0 %}
       <div class="post-header-tags">
-        {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+        {% for tag in page.tags %}<span class="tag tag-accent">{{ tag }}</span>{% endfor %}
       </div>
       {% endif %}
+      <h1>{{ page.title }}</h1>
+      <div class="post-meta-row">
+        <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%B %-d, %Y" }}
+        </time>
+        <span class="meta-dot">·</span>
+        <span class="post-read-time" id="readTime"></span>
+      </div>
+    </header>
+
+    <div class="post-body" id="postBody">
+      {{ content }}
     </div>
-  </header>
 
-  <div class="post-body">
-    {{ content }}
-  </div>
+    <div class="post-author-card">
+      <div class="author-avatar-sm">KU</div>
+      <div class="author-info">
+        <div class="author-name">Kiran U Kamath</div>
+        <div class="author-title">Senior Software Engineer · PayU · Bengaluru</div>
+        <p class="author-bio">Building high-performance backend systems, fraud detection platforms, and distributed systems at scale. Writing about what I learn along the way.</p>
+        <div class="author-social">
+          <a href="https://linkedin.com/in/kiranukamath" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/kiranukamath" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="{{ '/' | relative_url }}">Portfolio</a>
+        </div>
+      </div>
+    </div>
 
-  <div class="post-share">
-    <h3>Share this post</h3>
-    <div class="share-btns">
-      <a class="btn btn-primary"
-         href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}"
-         target="_blank" rel="noopener">
-        Share on LinkedIn
-      </a>
+    <div class="post-share">
+      <div class="post-share-inner">
+        <div class="post-share-text">
+          <div class="post-share-title">Found this useful?</div>
+          <div class="post-share-desc">Share it with someone who might benefit.</div>
+        </div>
+        <div class="share-btns">
+          <a class="btn btn-primary"
+             href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}"
+             target="_blank" rel="noopener noreferrer">
+            Share on LinkedIn
+          </a>
+          {% if page.linkedin_summary %}
+          <button class="btn btn-outline" onclick="copyLinkedInPost(this)">
+            Copy LinkedIn Draft
+          </button>
+          {% endif %}
+        </div>
+      </div>
       {% if page.linkedin_summary %}
-      <button class="btn btn-outline" onclick="copyLinkedInPost(this)">
-        Copy LinkedIn Post Template
-      </button>
+      <p class="copy-confirm" id="copyConfirm" style="display:none">Copied to clipboard! Paste it into your LinkedIn post.</p>
       {% endif %}
     </div>
-    {% if page.linkedin_summary %}
-    <div id="copy-confirm" class="copy-confirm" style="display:none">Copied! Paste it into your LinkedIn post.</div>
-    <script>
-    var linkedInText = {{ page.linkedin_summary | jsonify }};
-    function copyLinkedInPost(btn) {
-      navigator.clipboard.writeText(linkedInText).then(function() {
-        var confirm = document.getElementById('copy-confirm');
-        confirm.style.display = 'block';
-        btn.textContent = 'Copied!';
-        setTimeout(function() {
-          confirm.style.display = 'none';
-          btn.textContent = 'Copy LinkedIn Post Template';
-        }, 3000);
-      });
-    }
-    </script>
-    {% endif %}
-  </div>
 
-</div>
+    <div class="post-footer-nav">
+      <a href="{{ '/blog/' | relative_url }}" class="post-back-link">← Back to all posts</a>
+    </div>
+
+  </div>
+</article>
+
+{% if page.linkedin_summary %}
+<script>
+var linkedInText = {{ page.linkedin_summary | jsonify }};
+function copyLinkedInPost(btn) {
+  navigator.clipboard.writeText(linkedInText).then(function() {
+    document.getElementById('copyConfirm').style.display = 'block';
+    btn.textContent = 'Copied!';
+    setTimeout(function() {
+      document.getElementById('copyConfirm').style.display = 'none';
+      btn.textContent = 'Copy LinkedIn Draft';
+    }, 3000);
+  });
+}
+</script>
+{% endif %}
+
+<script>
+(function() {
+  // Reading progress bar
+  var bar = document.getElementById('progressBar');
+  if (bar) {
+    window.addEventListener('scroll', function() {
+      var d = document.documentElement;
+      var top = window.scrollY || d.scrollTop;
+      var height = d.scrollHeight - d.clientHeight;
+      bar.style.width = (height > 0 ? (top / height * 100) : 0) + '%';
+    }, { passive: true });
+  }
+
+  // Auto-calculate reading time
+  var body = document.getElementById('postBody');
+  var rt = document.getElementById('readTime');
+  if (body && rt) {
+    var words = body.innerText.trim().split(/\s+/).length;
+    var mins = Math.max(1, Math.round(words / 200));
+    rt.textContent = mins + ' min read';
+  }
+})();
+</script>

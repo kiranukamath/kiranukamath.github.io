@@ -1,124 +1,38 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Kiran U Kamath | Senior Software Engineer</title>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{--bg:#ffffff;--bg2:#f8f9fa;--text:#1a1a1a;--muted:#6b7280;--accent:#2563eb;--border:#e5e7eb;--nav-h:64px}
-  html{scroll-behavior:smooth}
-  body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
-
-  nav{position:fixed;top:0;width:100%;height:var(--nav-h);background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%}
-  .logo{font-weight:700;font-size:1.1rem;letter-spacing:-.3px}
-  .logo span{color:var(--accent)}
-  .nav-links{display:flex;gap:2rem;list-style:none}
-  .nav-links a{text-decoration:none;color:var(--muted);font-size:.9rem;font-weight:500;transition:color .2s}
-  .nav-links a:hover{color:var(--accent)}
-
-  section{padding:80px 5%;max-width:900px;margin:0 auto}
-  section:first-of-type{padding-top:calc(var(--nav-h) + 80px)}
-  h2.sec-title{font-size:1.6rem;font-weight:700;margin-bottom:2rem;position:relative;padding-bottom:.5rem}
-  h2.sec-title::after{content:'';position:absolute;bottom:0;left:0;width:36px;height:3px;background:var(--accent);border-radius:2px}
-
-  #hero{min-height:calc(100vh - var(--nav-h));display:flex;flex-direction:column;justify-content:center;padding-top:var(--nav-h)}
-  .hero-tag{display:inline-block;background:#eff6ff;color:var(--accent);font-size:.8rem;font-weight:600;padding:.3rem .8rem;border-radius:999px;margin-bottom:1.2rem;letter-spacing:.5px;text-transform:uppercase}
-  #hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:1rem}
-  #hero h1 span{color:var(--accent)}
-  #hero p{font-size:1.1rem;color:var(--muted);max-width:560px;margin-bottom:2rem}
-  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
-  .btn{padding:.7rem 1.6rem;border-radius:8px;font-weight:600;font-size:.9rem;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
-  .btn-primary{background:var(--accent);color:#fff}
-  .btn-primary:hover{background:#1d4ed8}
-  .btn-outline{border:2px solid var(--border);color:var(--text);background:transparent}
-  .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
-
-  #about{background:var(--bg2);max-width:100%;padding:80px 5%}
-  .about-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:start}
-  .avatar{width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,#2563eb22,#2563eb55);display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:700;color:var(--accent);border:3px solid var(--border);flex-shrink:0}
-  .about-text p{color:var(--muted);margin-bottom:1rem}
-  .about-links{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
-  .about-links a{color:var(--accent);text-decoration:none;font-size:.9rem;font-weight:500;display:flex;align-items:center;gap:.3rem}
-  .about-links a:hover{text-decoration:underline}
-
-  .timeline{display:flex;flex-direction:column}
-  .tl-item{display:grid;grid-template-columns:130px 1fr;gap:1.5rem;padding:2rem 0;border-bottom:1px solid var(--border)}
-  .tl-item:last-child{border-bottom:none}
-  .tl-meta{padding-top:.15rem}
-  .tl-date{color:var(--muted);font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:.3rem}
-  .tl-loc{color:var(--muted);font-size:.78rem}
-  .tl-content h3{font-size:1rem;font-weight:700;margin-bottom:.15rem}
-  .tl-content .company{color:var(--accent);font-size:.9rem;font-weight:600;margin-bottom:.6rem}
-  .tl-content ul{color:var(--muted);font-size:.875rem;padding-left:1.2rem}
-  .tl-content ul li{margin-bottom:.45rem;line-height:1.55}
-  .tl-content ul li strong{color:var(--text)}
-
-  #skills{background:var(--bg2);max-width:100%;padding:80px 5%}
-  #skills .inner{max-width:900px;margin:0 auto}
-  .skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.5rem}
-  .skill-group h3{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:.8rem}
-  .tags{display:flex;flex-wrap:wrap;gap:.5rem}
-  .tag{background:#fff;border:1px solid var(--border);padding:.3rem .75rem;border-radius:999px;font-size:.82rem;font-weight:500;color:var(--text)}
-  #skills .tag{background:var(--bg)}
-
-  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
-  .proj-card{border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:box-shadow .2s,transform .2s}
-  .proj-card:hover{box-shadow:0 8px 30px rgba(0,0,0,.08);transform:translateY(-2px)}
-  .proj-icon{width:42px;height:42px;background:#eff6ff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem}
-  .proj-card h3{font-size:1rem;font-weight:700;margin-bottom:.4rem}
-  .proj-card p{color:var(--muted);font-size:.875rem;margin-bottom:.8rem;line-height:1.55}
-  .proj-card .tags{margin-top:.6rem}
-  .proj-link{color:var(--accent);font-size:.85rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:.25rem;margin-top:.8rem}
-  .proj-link:hover{text-decoration:underline}
-
-  .edu-list{display:flex;flex-direction:column}
-  .edu-item{display:grid;grid-template-columns:130px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border)}
-  .edu-item:last-child{border-bottom:none}
-  .edu-year{color:var(--muted);font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.4px;padding-top:.15rem}
-  .edu-content h3{font-size:1rem;font-weight:700;margin-bottom:.2rem}
-  .edu-content .inst{color:var(--accent);font-size:.88rem;font-weight:600;margin-bottom:.25rem}
-  .edu-content p{color:var(--muted);font-size:.875rem}
-  .cert-badge{display:inline-block;background:#eff6ff;color:var(--accent);font-size:.75rem;font-weight:600;padding:.2rem .6rem;border-radius:4px;margin-right:.4rem;margin-top:.3rem}
-
-  #contact{background:var(--bg2);max-width:100%;padding:80px 5%}
-  #contact .inner{max-width:900px;margin:0 auto}
-  .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.5rem}
-  .contact-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--text);transition:border-color .2s,box-shadow .2s}
-  .contact-card:hover{border-color:var(--accent);box-shadow:0 4px 15px rgba(37,99,235,.1)}
-  .contact-icon{font-size:1.4rem}
-  .contact-label{font-size:.75rem;color:var(--muted);font-weight:500}
-  .contact-val{font-size:.9rem;font-weight:600}
-
-  footer{text-align:center;padding:2rem;color:var(--muted);font-size:.82rem;border-top:1px solid var(--border)}
-
-  @media(max-width:640px){
-    .about-inner{grid-template-columns:1fr}
-    .tl-item,.edu-item{grid-template-columns:1fr}
-    .nav-links{gap:1rem}
-    .nav-links a{font-size:.8rem}
-  }
-</style>
+<meta name="description" content="Senior Software Engineer specializing in high-performance backend systems, microservices architecture, and fraud risk management platforms."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}"/>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="logo"> <span>Kiran U Kamath</span></div>
+  <div class="logo"><span>Kiran U Kamath</span></div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#recent-posts">Writing</a></li>
     <li><a href="#education">Education</a></li>
+    <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <span class="hero-tag">~5.5 years @ PayU · Fintech & Fraud Risk</span>
-  <h1>Hi, I'm <span>Kiran U Kamath</span> 👋</h1>
+  <span class="hero-tag">~5.5 years @ PayU · Fintech &amp; Fraud Risk</span>
+  <h1>Hi, I'm <span>Kiran U Kamath</span></h1>
   <p>Senior Software Engineer specializing in high-performance backend systems, microservices architecture, and fraud risk management platforms. I turn complex problems into scalable, low-latency solutions.</p>
   <div class="hero-btns">
     <a href="#contact" class="btn btn-primary">Get in touch</a>
@@ -136,9 +50,9 @@
       <p>I'm a Senior Software Engineer based in Bengaluru with <strong>5+ years of experience</strong> in the fintech space. I love building things that work at scale — systems that are fast, reliable, and thoughtfully designed.</p>
       <p>When I'm not deep in code at PayU, I'm usually working on a side project, exploring new ideas in distributed systems, or finding better ways to solve old problems. I believe great software is as much about clarity of thought as it is about technical skill.</p>
       <div class="about-links">
-        <a href="https://linkedin.com/in/kiranukamath" target="_blank">🔗 LinkedIn</a>
-        <a href="https://github.com/kiranukamath" target="_blank">🐙 GitHub</a>
-        <a href="https://kiranukamath.github.io/resume/" target="_blank">📄 Resume</a>
+        <a href="https://linkedin.com/in/kiranukamath" target="_blank" rel="noopener">🔗 LinkedIn</a>
+        <a href="https://github.com/kiranukamath" target="_blank" rel="noopener">🐙 GitHub</a>
+        <a href="https://kiranukamath.github.io/resume/" target="_blank" rel="noopener">📄 Resume</a>
       </div>
     </div>
   </div>
@@ -221,7 +135,7 @@
       </div>
     </div>
     <div class="skill-group">
-      <h3>Backend & Architecture</h3>
+      <h3>Backend &amp; Architecture</h3>
       <div class="tags">
         <span class="tag">Spring Boot</span>
         <span class="tag">Microservices</span>
@@ -231,7 +145,7 @@
       </div>
     </div>
     <div class="skill-group">
-      <h3>Messaging & Data</h3>
+      <h3>Messaging &amp; Data</h3>
       <div class="tags">
         <span class="tag">Kafka</span>
         <span class="tag">RabbitMQ</span>
@@ -241,7 +155,7 @@
       </div>
     </div>
     <div class="skill-group">
-      <h3>ML & Data Science</h3>
+      <h3>ML &amp; Data Science</h3>
       <div class="tags">
         <span class="tag">Feature Engineering</span>
         <span class="tag">Hypothesis Testing</span>
@@ -250,7 +164,7 @@
       </div>
     </div>
     <div class="skill-group">
-      <h3>Tools & Practices</h3>
+      <h3>Tools &amp; Practices</h3>
       <div class="tags">
         <span class="tag">Java Profiler</span>
         <span class="tag">Docker</span>
@@ -283,18 +197,50 @@
       <p>A Redis-compatible database with adaptive tiered storage (memory → SSD → S3). Features built-in feature flags, rate limiting, config management, and semantic caching designed for AI workloads — all in one system.</p>
       <div class="tags">
         <span class="tag">Distributed DB</span><span class="tag">Redis-compatible</span><span class="tag">AI Infra</span><span class="tag">Tiered Storage</span>
-      <a class="proj-link" href="https://github.com/kiranukamath/kiradb" target="_blank">🐙 View on GitHub →</a>
       </div>
+      <a class="proj-link" href="https://github.com/kiranukamath/kiradb" target="_blank" rel="noopener">View on GitHub →</a>
     </div>
+
     <div class="proj-card">
+      <div class="proj-icon">🎫</div>
       <h3>Ticket Booking Backend</h3>
       <p>Designed and developed a high-concurrency ticket booking system handling parallel bookings efficiently. Uses Redis as a distributed cache with Lua scripts to manage seat availability and prevent overselling.</p>
       <div class="tags">
         <span class="tag">Java</span><span class="tag">Redis</span><span class="tag">Lua Scripts</span><span class="tag">Concurrency</span>
       </div>
-      <a class="proj-link" href="https://github.com/kiranukamath/ticket-booking-platform" target="_blank">🐙 View on GitHub →</a>
+      <a class="proj-link" href="https://github.com/kiranukamath/ticket-booking-platform" target="_blank" rel="noopener">View on GitHub →</a>
     </div>
+
   </div>
+</section>
+
+<!-- RECENT WRITING -->
+<section id="recent-posts">
+  <h2 class="sec-title">Recent Writing</h2>
+  {% assign recent_posts = site.posts | limit: 3 %}
+  {% if recent_posts.size > 0 %}
+  <div class="post-list">
+    {% for post in recent_posts %}
+    <a href="{{ post.url | relative_url }}" class="post-item">
+      <div class="post-item-date">{{ post.date | date: "%b %-d, %Y" }}</div>
+      <div>
+        <div class="post-item-title">{{ post.title }}</div>
+        {% if post.excerpt %}
+        <div class="post-item-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
+        {% endif %}
+        {% if post.tags and post.tags.size > 0 %}
+        <div class="post-item-tags">
+          {% for tag in post.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  <a href="{{ '/blog/' | relative_url }}" class="view-all-link">View all posts →</a>
+  {% else %}
+  <p style="color:var(--muted);padding:2rem 0">No posts yet — check back soon.</p>
+  {% endif %}
 </section>
 
 <!-- EDUCATION -->
@@ -305,7 +251,7 @@
     <div class="edu-item">
       <div class="edu-year">2016 – 2020</div>
       <div class="edu-content">
-        <h3>B.E. – Information Science & Engineering</h3>
+        <h3>B.E. – Information Science &amp; Engineering</h3>
         <div class="inst">National Institute of Engineering</div>
         <p>GPA: <strong>8.24 / 10</strong></p>
       </div>
@@ -346,15 +292,15 @@
       <span class="contact-icon">📞</span>
       <div><div class="contact-label">Phone</div><div class="contact-val">+91 99729 25056</div></div>
     </a>
-    <a class="contact-card" href="https://linkedin.com/in/kiranukamath" target="_blank">
+    <a class="contact-card" href="https://linkedin.com/in/kiranukamath" target="_blank" rel="noopener">
       <span class="contact-icon">🔗</span>
       <div><div class="contact-label">LinkedIn</div><div class="contact-val">kiranukamath</div></div>
     </a>
-    <a class="contact-card" href="https://github.com/kiranukamath" target="_blank">
+    <a class="contact-card" href="https://github.com/kiranukamath" target="_blank" rel="noopener">
       <span class="contact-icon">🐙</span>
       <div><div class="contact-label">GitHub</div><div class="contact-val">kiranukamath</div></div>
     </a>
-    <a class="contact-card" href="https://kiranukamath.github.io/resume/" target="_blank">
+    <a class="contact-card" href="https://kiranukamath.github.io/resume/" target="_blank" rel="noopener">
       <span class="contact-icon">📄</span>
       <div><div class="contact-label">Resume</div><div class="contact-val">View / Download</div></div>
     </a>
@@ -363,7 +309,7 @@
 </div>
 
 <footer>
-  <p>© 2026 Kiran Ukamath · Built with ❤️ and deployed on GitHub Pages</p>
+  <p>© 2026 Kiran U Kamath · Built with care, deployed on GitHub Pages</p>
 </footer>
 
 </body>

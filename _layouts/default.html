@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>{% if page.title and page.title != "Home" %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }} | Senior Software Engineer{% endif %}</title>
 <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% elsif page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}"/>
 {% seo %}
 {% feed_meta %}
@@ -27,7 +30,7 @@
 {{ content }}
 
 <footer>
-  <p>© 2026 Kiran Ukamath · Built with ❤️ and deployed on GitHub Pages</p>
+  <p>© 2026 Kiran U Kamath · Built with care, deployed on GitHub Pages</p>
 </footer>
 
 </body>
