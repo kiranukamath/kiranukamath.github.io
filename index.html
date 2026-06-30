@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Kiran U Kamath | Lead Software Engineer</title>
+<meta name="description" content="Lead Software Engineer specializing in high-performance backend systems, microservices architecture, and fraud risk management platforms."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/css/style.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo"><span>Kiran U Kamath</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#recent-posts">Writing</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <span class="hero-tag">~6 years @ PayU · Fintech &amp; Fraud Risk</span>
+  <h1>Hi, I'm <span>Kiran U Kamath</span></h1>
+  <p>Lead Software Engineer specializing in high-performance backend systems, microservices architecture, and fraud risk management platforms. I turn complex problems into scalable, low-latency solutions.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn btn-primary">Get in touch</a>
+    <a href="#experience" class="btn btn-outline">View my work</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div id="about">
+<section style="padding:0;max-width:900px;margin:0 auto">
+  <h2 class="sec-title">About Me</h2>
+  <div class="about-inner">
+    <div class="avatar">KU</div>
+    <div class="about-text">
+      <p>I'm a Lead Software Engineer based in Bengaluru with <strong>6+ years of experience</strong> in the fintech space. I love building things that work at scale — systems that are fast, reliable, and thoughtfully designed.</p>
+      <p>When I'm not deep in code at PayU, I'm usually working on a side project, exploring new ideas in distributed systems, or finding better ways to solve old problems. I believe great software is as much about clarity of thought as it is about technical skill.</p>
+      <div class="about-links">
+        <a href="https://linkedin.com/in/kiranukamath" target="_blank" rel="noopener">🔗 LinkedIn</a>
+        <a href="https://github.com/kiranukamath" target="_blank" rel="noopener">🐙 GitHub</a>
+        <a href="https://kiranukamath.github.io/resume/" target="_blank" rel="noopener">📄 Resume</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <h2 class="sec-title">Work Experience</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <div class="tl-date">Apr 2026 – Present</div>
+        <div class="tl-loc">Bengaluru, IN</div>
+      </div>
+      <div class="tl-content">
+        <h3>Lead Software Engineer</h3>
+        <div class="company">PayU</div>
+        <ul>
+          <li>Promoted to Lead Software Engineer, taking on broader technical leadership and ownership across the Fraud Risk Management platform.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <div class="tl-date">Apr 2023 – Mar 2026</div>
+        <div class="tl-loc">Bengaluru, IN</div>
+      </div>
+      <div class="tl-content">
+        <h3>Senior Software Engineer</h3>
+        <div class="company">PayU</div>
+        <ul>
+          <li><strong>System Re-Architecture:</strong> Spearheaded migration of the Trident FRM system from a monolithic Java app to a scalable, multi-tenant microservices architecture using Spring Boot, RabbitMQ, and Couchbase — delivering significant cost reductions and performance improvements.</li>
+          <li><strong>Rule Engine:</strong> Designed a rule engine capable of processing 5× the transaction volume of the previous version, supporting dynamic rule authoring and real-time execution without redeployment.</li>
+          <li><strong>Real-Time Statistics:</strong> Developed an optimized real-time statistics computation model for rule evaluation using Couchbase as an in-memory database for low-latency data fetch and storage.</li>
+          <li><strong>Workflow Automation:</strong> Designed workflows for fraud detection and AML using Camunda BPMN for multi-level approvals and process orchestration.</li>
+          <li><strong>Performance Optimization:</strong> Reduced decision engine latency from <strong>630ms → 50ms</strong> via Java Profiler and memory leak analysis. Scaled throughput from <strong>40 TPS → 200 TPS</strong> per node (4-core, 8GB RAM VM).</li>
+          <li><strong>Feature Development:</strong> Implemented case management workflows, real-time currency conversion, suspicious entity detection, and entity profile enrichment.</li>
+          <li><strong>Engineering Excellence:</strong> Led code reviews enforcing SOLID principles, design patterns, and an API-first approach across the team.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <div class="tl-date">Apr 2021 – Apr 2023</div>
+        <div class="tl-loc">Bengaluru, IN</div>
+      </div>
+      <div class="tl-content">
+        <h3>Software Engineer</h3>
+        <div class="company">PayU</div>
+        <ul>
+          <li><strong>Reporting Service:</strong> Delivered a fully customized reporting service powered by Couchbase Analytics, reducing TAT from hours to minutes while offloading operational database load and supporting ad-hoc queries.</li>
+          <li><strong>Rule Engine – Case Manager:</strong> Contributed to FRM Trident 2.0, enhancing rule engine capabilities and building the case manager portal for fraud monitoring.</li>
+          <li><strong>DBInsert Microservice:</strong> Designed a robust DBInsert microservice using RabbitMQ, Kafka, MySQL, and Couchbase for seamless data transformation and integration between messaging systems and databases.</li>
+          <li><strong>Data Migration Utility:</strong> Built a migration utility to transfer data from Couchbase to MySQL using Kafka and Maxwell's Change Data Capture, improving data consistency and scalability.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-meta">
+        <div class="tl-date">Sep 2020 – Apr 2021</div>
+        <div class="tl-loc">Bengaluru, IN</div>
+      </div>
+      <div class="tl-content">
+        <h3>Associate Software Engineer</h3>
+        <div class="company">PayU</div>
+        <ul>
+          <li>Worked on ML model development for RBA Scorecard and Fraud ML models — including hypothesis testing, feature engineering, and hyperparameter tuning.</li>
+          <li>Integrated ML models into the FRM Rule Engine.</li>
+          <li>Contributed to feature development, bug fixes, and production issue resolution.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div id="skills">
+<section style="padding:0;max-width:900px;margin:0 auto">
+  <h2 class="sec-title">Skills</h2>
+  <div class="skill-groups">
+    <div class="skill-group">
+      <h3>Languages</h3>
+      <div class="tags">
+        <span class="tag">Java</span>
+        <span class="tag">Python</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Shell</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Backend &amp; Architecture</h3>
+      <div class="tags">
+        <span class="tag">Spring Boot</span>
+        <span class="tag">Microservices</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Camunda BPMN</span>
+        <span class="tag">Rule Engines</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Messaging &amp; Data</h3>
+      <div class="tags">
+        <span class="tag">Kafka</span>
+        <span class="tag">RabbitMQ</span>
+        <span class="tag">Couchbase</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Redis</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>ML &amp; Data Science</h3>
+      <div class="tags">
+        <span class="tag">Feature Engineering</span>
+        <span class="tag">Hypothesis Testing</span>
+        <span class="tag">Fraud ML Models</span>
+        <span class="tag">scikit-learn</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Tools &amp; Practices</h3>
+      <div class="tags">
+        <span class="tag">Java Profiler</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Git</span>
+        <span class="tag">CI/CD</span>
+        <span class="tag">SOLID Principles</span>
+        <span class="tag">API-First Design</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Cloud</h3>
+      <div class="tags">
+        <span class="tag">AWS</span>
+        <span class="tag">Cloud Native</span>
+        <span class="tag">Distributed Systems</span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2 class="sec-title">Projects</h2>
+  <div class="proj-grid">
+
+    <div class="proj-card">
+      <div class="proj-icon">🗄️</div>
+      <h3>KiraDB</h3>
+      <p>A Redis-compatible database with adaptive tiered storage (memory → SSD → S3). Features built-in feature flags, rate limiting, config management, and semantic caching designed for AI workloads — all in one system.</p>
+      <div class="tags">
+        <span class="tag">Distributed DB</span><span class="tag">Redis-compatible</span><span class="tag">AI Infra</span><span class="tag">Tiered Storage</span>
+      </div>
+      <a class="proj-link" href="https://github.com/kiranukamath/kiradb" target="_blank" rel="noopener">View on GitHub →</a>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-icon">🎫</div>
+      <h3>Ticket Booking Backend</h3>
+      <p>Designed and developed a high-concurrency ticket booking system handling parallel bookings efficiently. Uses Redis as a distributed cache with Lua scripts to manage seat availability and prevent overselling.</p>
+      <div class="tags">
+        <span class="tag">Java</span><span class="tag">Redis</span><span class="tag">Lua Scripts</span><span class="tag">Concurrency</span>
+      </div>
+      <a class="proj-link" href="https://github.com/kiranukamath/ticket-booking-platform" target="_blank" rel="noopener">View on GitHub →</a>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-icon">🤖</div>
+      <h3>Loop</h3>
+      <p>Agentic interview coach built on LangGraph. Covers end-to-end interview prep — planning, mock interviews, grading, and adaptive learning across sessions using multi-agent workflows.</p>
+      <div class="tags">
+        <span class="tag">Agentic AI</span><span class="tag">LangGraph</span><span class="tag">AWS Bedrock</span><span class="tag">Python</span>
+      </div>
+      <a class="proj-link" href="https://github.com/kiranukamath/loop" target="_blank" rel="noopener">View on GitHub →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- RECENT WRITING -->
+<section id="recent-posts">
+  <h2 class="sec-title">Recent Writing</h2>
+  
+  
+  <div class="post-list">
+    
+    <a href="/blog/2026/04/02/redis-hashes/" class="post-item">
+      <div class="post-item-date">Apr 2, 2026</div>
+      <div>
+        <div class="post-item-title">Redis Hashes: Memory Optimization at Scale</div>
+        
+        <div class="post-item-excerpt">How Redis Hashes reduce memory overhead by consolidating keys and leveraging ziplist compression — with real numbers and a gaming leaderboard use case.</div>
+        
+        
+        <div class="post-item-tags">
+          <span class="tag">Redis</span><span class="tag">Backend</span><span class="tag">Performance</span><span class="tag">System Design</span>
+        </div>
+        
+      </div>
+    </a>
+    
+  </div>
+  <a href="/blog/" class="view-all-link">View all posts →</a>
+  
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <h2 class="sec-title">Education</h2>
+  <div class="edu-list">
+
+    <div class="edu-item">
+      <div class="edu-year">2016 – 2020</div>
+      <div class="edu-content">
+        <h3>B.E. – Information Science &amp; Engineering</h3>
+        <div class="inst">National Institute of Engineering</div>
+        <p>GPA: <strong>8.24 / 10</strong></p>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2023</div>
+      <div class="edu-content">
+        <h3>Cloud Native Application Architecture</h3>
+        <div class="inst">Udacity</div>
+        <p><span class="cert-badge">Certificate</span></p>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2021</div>
+      <div class="edu-content">
+        <h3>Data Scientist Nanodegree</h3>
+        <div class="inst">Udacity</div>
+        <p><span class="cert-badge">Nanodegree</span></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact">
+<section style="padding:0;max-width:900px;margin:0 auto">
+  <h2 class="sec-title">Contact</h2>
+  <p style="color:var(--muted)">Feel free to reach out — I'm always open to interesting conversations and new opportunities.</p>
+  <div class="contact-grid">
+    <a class="contact-card" href="mailto:kirankamat.mgm@gmail.com">
+      <span class="contact-icon">✉️</span>
+      <div><div class="contact-label">Email</div><div class="contact-val">kirankamat.mgm@gmail.com</div></div>
+    </a>
+    <a class="contact-card" href="tel:+919972925056">
+      <span class="contact-icon">📞</span>
+      <div><div class="contact-label">Phone</div><div class="contact-val">+91 99729 25056</div></div>
+    </a>
+    <a class="contact-card" href="https://linkedin.com/in/kiranukamath" target="_blank" rel="noopener">
+      <span class="contact-icon">🔗</span>
+      <div><div class="contact-label">LinkedIn</div><div class="contact-val">kiranukamath</div></div>
+    </a>
+    <a class="contact-card" href="https://github.com/kiranukamath" target="_blank" rel="noopener">
+      <span class="contact-icon">🐙</span>
+      <div><div class="contact-label">GitHub</div><div class="contact-val">kiranukamath</div></div>
+    </a>
+    <a class="contact-card" href="https://kiranukamath.github.io/resume/" target="_blank" rel="noopener">
+      <span class="contact-icon">📄</span>
+      <div><div class="contact-label">Resume</div><div class="contact-val">View / Download</div></div>
+    </a>
+  </div>
+</section>
+</div>
+
+<footer>
+  <p>© 2026 Kiran U Kamath · Built with care, deployed on GitHub Pages</p>
+</footer>
+
+</body>
+</html>
