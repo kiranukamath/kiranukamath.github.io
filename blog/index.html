@@ -30,4 +30,22 @@ title: Blog
   {% else %}
   <p class="no-posts">No posts yet — check back soon.</p>
   {% endif %}
+
+  {% if site.data.linkedin_posts.size > 0 %}
+  <div class="linkedin-posts-section">
+    <h2 class="sec-title" style="margin-top:3rem">LinkedIn Posts</h2>
+    <p class="subtitle">Tech posts and thoughts shared on LinkedIn.</p>
+    <div class="blog-list">
+      {% for post in site.data.linkedin_posts %}
+      <a href="{{ post.url }}" class="blog-list-item" target="_blank" rel="noopener">
+        <div class="blog-list-meta">
+          <span class="blog-list-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+          <span class="tag" style="margin-left:0.5rem">LinkedIn</span>
+        </div>
+        <div class="blog-list-title">{{ post.topic }}</div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
 </div>

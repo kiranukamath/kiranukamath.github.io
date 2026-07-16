@@ -1,0 +1,13 @@
+# Add new entries at the TOP (newest first)
+# Format:
+# - date: "YYYY-MM-DD"
+#   topic: "Post title or topic"
+#   url: "https://www.linkedin.com/feed/update/urn:li:activity:..."
+
+- date: "2026-07-16"
+  topic: "Quepaxa"
+  url: "https://www.linkedin.com/feed/update/urn:li:activity:7483532307438612481/"
+
+- date: "2025-06-08"
+  topic: "Meta Skybridge"
+  url: "https://www.linkedin.com/feed/update/urn:li:activity:7480867088874594304/"
