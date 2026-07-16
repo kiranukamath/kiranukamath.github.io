@@ -1,58 +1,56 @@
 ---
+layout: default
+title: Home
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Kiran U Kamath | Lead Software Engineer</title>
-<meta name="description" content="Lead Software Engineer specializing in high-performance backend systems, microservices architecture, and fraud risk management platforms."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}"/>
-</head>
-<body>
-
-<!-- NAV -->
-<nav>
-  <div class="logo"><span>Kiran U Kamath</span></div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#recent-posts">Writing</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
 
 <!-- HERO -->
 <section id="hero">
-  <span class="hero-tag">~6 years @ PayU · Fintech &amp; Fraud Risk</span>
-  <h1>Hi, I'm <span>Kiran U Kamath</span></h1>
-  <p>Lead Software Engineer specializing in high-performance backend systems, microservices architecture, and fraud risk management platforms. I turn complex problems into scalable, low-latency solutions.</p>
-  <div class="hero-btns">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <h1 class="reveal">Hi, I'm <span>Kiran U Kamath</span></h1>
+  <p class="reveal">Lead Software Engineer specializing in high-performance backend systems, microservices architecture, and fraud risk management platforms. I turn complex problems into scalable, low-latency solutions.</p>
+  <div class="hero-btns reveal">
     <a href="#contact" class="btn btn-primary">Get in touch</a>
-    <a href="#experience" class="btn btn-outline">View my work</a>
+    <a href="#projects" class="btn btn-outline">View my work</a>
   </div>
+  <a href="#about" class="scroll-cue">
+    Scroll
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 13l7 7 7-7"/></svg>
+  </a>
 </section>
 
 <!-- ABOUT -->
 <div id="about">
-<section style="padding:0;max-width:900px;margin:0 auto">
-  <h2 class="sec-title">About Me</h2>
+<section style="padding:0;max-width:940px;margin:0 auto">
+  <span class="eyebrow reveal"><span class="eyebrow-num">01</span>About</span>
+  <h2 class="sec-title reveal">Get to know me</h2>
   <div class="about-inner">
-    <div class="avatar">KU</div>
-    <div class="about-text">
+    <div class="avatar reveal">
+      <img src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Kiran U Kamath" onerror="this.remove()"/>
+      KU
+    </div>
+    <div class="about-text reveal">
       <p>I'm a Lead Software Engineer based in Bengaluru with <strong>6+ years of experience</strong> in the fintech space. I love building things that work at scale — systems that are fast, reliable, and thoughtfully designed.</p>
-      <p>When I'm not deep in code at PayU, I'm usually working on a side project, exploring new ideas in distributed systems, or finding better ways to solve old problems. I believe great software is as much about clarity of thought as it is about technical skill.</p>
+      <p>When I'm not deep in code at PayU, I'm usually working on a side project, exploring agentic AI and distributed systems, or finding better ways to solve old problems. I believe great software is as much about clarity of thought as it is about technical skill.</p>
+      <div class="about-facts">
+        <div class="about-fact"><div class="about-fact-label">Role</div><div class="about-fact-val">Lead Software Engineer</div></div>
+        <div class="about-fact"><div class="about-fact-label">Company</div><div class="about-fact-val">PayU</div></div>
+        <div class="about-fact"><div class="about-fact-label">Based in</div><div class="about-fact-val">Bengaluru, India</div></div>
+        <div class="about-fact"><div class="about-fact-label">Focus</div><div class="about-fact-val">Fraud Risk Platforms</div></div>
+      </div>
       <div class="about-links">
-        <a href="https://linkedin.com/in/kiranukamath" target="_blank" rel="noopener">🔗 LinkedIn</a>
-        <a href="https://github.com/kiranukamath" target="_blank" rel="noopener">🐙 GitHub</a>
-        <a href="https://kiranukamath.github.io/resume/" target="_blank" rel="noopener">📄 Resume</a>
+        <a href="https://linkedin.com/in/kiranukamath" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="4"/><circle cx="7.5" cy="8" r="1"/><path d="M7.5 11v6M11.5 11v6M11.5 13.5c0-1.5 1-2.5 2.3-2.5 1.5 0 2.2 1 2.2 2.8V17"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/kiranukamath" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.31.678.921.678 1.856 0 1.34-.012 2.421-.012 2.751 0 .268.18.58.688.481A10.02 10.02 0 0022 12.017C22 6.484 17.523 2 12 2z"/></svg>
+          GitHub
+        </a>
+        <a href="https://kiranukamath.github.io/resume/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6M9 9h1"/></svg>
+          Resume
+        </a>
       </div>
     </div>
   </div>
@@ -61,28 +59,32 @@
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <h2 class="sec-title">Work Experience</h2>
+  <span class="eyebrow reveal"><span class="eyebrow-num">02</span>Career</span>
+  <h2 class="sec-title reveal">Work Experience</h2>
   <div class="timeline">
 
-    <div class="tl-item">
+    <div class="tl-item reveal">
       <div class="tl-meta">
         <div class="tl-date">Apr 2026 – Present</div>
         <div class="tl-loc">Bengaluru, IN</div>
       </div>
+      <div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div>
       <div class="tl-content">
         <h3>Lead Software Engineer</h3>
         <div class="company">PayU</div>
         <ul>
-          <li>Promoted to Lead Software Engineer, taking on broader technical leadership and ownership across the Fraud Risk Management platform.</li>
+          <li><strong>Team Leadership:</strong> Lead a team of 7 engineers across the Fraud Risk Management platform, owning the AOP roadmap and driving technical prioritization, quarterly planning, and delivery.</li>
+          <li><strong>Agentic AI &amp; Production Stability:</strong> Designing agentic AI use cases and workflows, improving observability, reducing incidents, and establishing engineering standards across the team.</li>
         </ul>
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="tl-item reveal">
       <div class="tl-meta">
         <div class="tl-date">Apr 2023 – Mar 2026</div>
         <div class="tl-loc">Bengaluru, IN</div>
       </div>
+      <div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div>
       <div class="tl-content">
         <h3>Senior Software Engineer</h3>
         <div class="company">PayU</div>
@@ -98,11 +100,12 @@
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="tl-item reveal">
       <div class="tl-meta">
         <div class="tl-date">Apr 2021 – Apr 2023</div>
         <div class="tl-loc">Bengaluru, IN</div>
       </div>
+      <div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div>
       <div class="tl-content">
         <h3>Software Engineer</h3>
         <div class="company">PayU</div>
@@ -115,11 +118,12 @@
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="tl-item reveal">
       <div class="tl-meta">
         <div class="tl-date">Sep 2020 – Apr 2021</div>
         <div class="tl-loc">Bengaluru, IN</div>
       </div>
+      <div class="tl-rail"><div class="tl-dot"></div><div class="tl-line"></div></div>
       <div class="tl-content">
         <h3>Associate Software Engineer</h3>
         <div class="company">PayU</div>
@@ -136,10 +140,11 @@
 
 <!-- SKILLS -->
 <div id="skills">
-<section style="padding:0;max-width:900px;margin:0 auto">
-  <h2 class="sec-title">Skills</h2>
+<section style="padding:0;max-width:940px;margin:0 auto">
+  <span class="eyebrow reveal"><span class="eyebrow-num">03</span>Toolbox</span>
+  <h2 class="sec-title reveal">Skills</h2>
   <div class="skill-groups">
-    <div class="skill-group">
+    <div class="skill-group reveal">
       <h3>Languages</h3>
       <div class="tags">
         <span class="tag">Java</span>
@@ -148,52 +153,59 @@
         <span class="tag">Shell</span>
       </div>
     </div>
-    <div class="skill-group">
-      <h3>Backend &amp; Architecture</h3>
+    <div class="skill-group reveal">
+      <h3>Frameworks &amp; Tools</h3>
       <div class="tags">
         <span class="tag">Spring Boot</span>
-        <span class="tag">Microservices</span>
-        <span class="tag">REST APIs</span>
+        <span class="tag">Hibernate</span>
         <span class="tag">Camunda BPMN</span>
-        <span class="tag">Rule Engines</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Java Profilers</span>
       </div>
     </div>
-    <div class="skill-group">
-      <h3>Messaging &amp; Data</h3>
+    <div class="skill-group reveal">
+      <h3>Databases &amp; Caching</h3>
       <div class="tags">
-        <span class="tag">Kafka</span>
-        <span class="tag">RabbitMQ</span>
-        <span class="tag">Couchbase</span>
+        <span class="tag">Couchbase (NoSQL)</span>
         <span class="tag">MySQL</span>
-        <span class="tag">Redis</span>
+        <span class="tag">Redis (Lua Scripting)</span>
+        <span class="tag">Elasticsearch</span>
       </div>
     </div>
-    <div class="skill-group">
-      <h3>ML &amp; Data Science</h3>
+    <div class="skill-group reveal">
+      <h3>Messaging &amp; Streaming</h3>
       <div class="tags">
-        <span class="tag">Feature Engineering</span>
-        <span class="tag">Hypothesis Testing</span>
-        <span class="tag">Fraud ML Models</span>
-        <span class="tag">scikit-learn</span>
+        <span class="tag">RabbitMQ</span>
+        <span class="tag">Apache Kafka</span>
       </div>
     </div>
-    <div class="skill-group">
-      <h3>Tools &amp; Practices</h3>
+    <div class="skill-group reveal">
+      <h3>AI &amp; Agentic Systems</h3>
       <div class="tags">
-        <span class="tag">Java Profiler</span>
+        <span class="tag">Agentic AI Workflows</span>
+        <span class="tag">LangGraph</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">AWS Bedrock</span>
+        <span class="tag">RAG</span>
+        <span class="tag">Prompt Engineering</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>DevOps &amp; Cloud</h3>
+      <div class="tags">
         <span class="tag">Docker</span>
-        <span class="tag">Git</span>
+        <span class="tag">Kubernetes</span>
+        <span class="tag">AWS (EC2)</span>
         <span class="tag">CI/CD</span>
-        <span class="tag">SOLID Principles</span>
-        <span class="tag">API-First Design</span>
       </div>
     </div>
-    <div class="skill-group">
-      <h3>Cloud</h3>
+    <div class="skill-group reveal">
+      <h3>Practices</h3>
       <div class="tags">
-        <span class="tag">AWS</span>
-        <span class="tag">Cloud Native</span>
-        <span class="tag">Distributed Systems</span>
+        <span class="tag">API-First Design</span>
+        <span class="tag">SOLID Principles</span>
+        <span class="tag">Design Patterns</span>
+        <span class="tag">Code Reviews</span>
       </div>
     </div>
   </div>
@@ -202,11 +214,14 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <h2 class="sec-title">Projects</h2>
+  <span class="eyebrow reveal"><span class="eyebrow-num">04</span>Side projects</span>
+  <h2 class="sec-title reveal">Things I've built</h2>
   <div class="proj-grid">
 
-    <div class="proj-card">
-      <div class="proj-icon">🗄️</div>
+    <div class="proj-card reveal">
+      <div class="proj-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
+      </div>
       <h3>KiraDB</h3>
       <p>A Redis-compatible database with adaptive tiered storage (memory → SSD → S3). Features built-in feature flags, rate limiting, config management, and semantic caching designed for AI workloads — all in one system.</p>
       <div class="tags">
@@ -215,8 +230,10 @@
       <a class="proj-link" href="https://github.com/kiranukamath/kiradb" target="_blank" rel="noopener">View on GitHub →</a>
     </div>
 
-    <div class="proj-card">
-      <div class="proj-icon">🎫</div>
+    <div class="proj-card reveal">
+      <div class="proj-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 000 4v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a2 2 0 000-4z"/><path d="M13 5v2M13 11v2M13 17v2"/></svg>
+      </div>
       <h3>Ticket Booking Backend</h3>
       <p>Designed and developed a high-concurrency ticket booking system handling parallel bookings efficiently. Uses Redis as a distributed cache with Lua scripts to manage seat availability and prevent overselling.</p>
       <div class="tags">
@@ -225,8 +242,10 @@
       <a class="proj-link" href="https://github.com/kiranukamath/ticket-booking-platform" target="_blank" rel="noopener">View on GitHub →</a>
     </div>
 
-    <div class="proj-card">
-      <div class="proj-icon">🤖</div>
+    <div class="proj-card reveal">
+      <div class="proj-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>
+      </div>
       <h3>Loop</h3>
       <p>Agentic interview coach built on LangGraph. Covers end-to-end interview prep — planning, mock interviews, grading, and adaptive learning across sessions using multi-agent workflows.</p>
       <div class="tags">
@@ -240,12 +259,13 @@
 
 <!-- RECENT WRITING -->
 <section id="recent-posts">
-  <h2 class="sec-title">Recent Writing</h2>
+  <span class="eyebrow reveal"><span class="eyebrow-num">05</span>Writing</span>
+  <h2 class="sec-title reveal">Recent Writing</h2>
   {% assign recent_posts = site.posts | limit: 3 %}
   {% if recent_posts.size > 0 %}
   <div class="post-list">
     {% for post in recent_posts %}
-    <a href="{{ post.url | relative_url }}" class="post-item">
+    <a href="{{ post.url | relative_url }}" class="post-item reveal">
       <div class="post-item-date">{{ post.date | date: "%b %-d, %Y" }}</div>
       <div>
         <div class="post-item-title">{{ post.title }}</div>
@@ -261,7 +281,7 @@
     </a>
     {% endfor %}
   </div>
-  <a href="{{ '/blog/' | relative_url }}" class="view-all-link">View all posts →</a>
+  <a href="{{ '/blog/' | relative_url }}" class="view-all-link">View all posts &amp; LinkedIn writing →</a>
   {% else %}
   <p style="color:var(--muted);padding:2rem 0">No posts yet — check back soon.</p>
   {% endif %}
@@ -269,10 +289,11 @@
 
 <!-- EDUCATION -->
 <section id="education">
-  <h2 class="sec-title">Education</h2>
+  <span class="eyebrow reveal"><span class="eyebrow-num">06</span>Background</span>
+  <h2 class="sec-title reveal">Education</h2>
   <div class="edu-list">
 
-    <div class="edu-item">
+    <div class="edu-item reveal">
       <div class="edu-year">2016 – 2020</div>
       <div class="edu-content">
         <h3>B.E. – Information Science &amp; Engineering</h3>
@@ -281,7 +302,7 @@
       </div>
     </div>
 
-    <div class="edu-item">
+    <div class="edu-item reveal">
       <div class="edu-year">2023</div>
       <div class="edu-content">
         <h3>Cloud Native Application Architecture</h3>
@@ -290,7 +311,7 @@
       </div>
     </div>
 
-    <div class="edu-item">
+    <div class="edu-item reveal">
       <div class="edu-year">2021</div>
       <div class="edu-content">
         <h3>Data Scientist Nanodegree</h3>
@@ -304,37 +325,35 @@
 
 <!-- CONTACT -->
 <div id="contact">
-<section style="padding:0;max-width:900px;margin:0 auto">
-  <h2 class="sec-title">Contact</h2>
-  <p style="color:var(--muted)">Feel free to reach out — I'm always open to interesting conversations and new opportunities.</p>
-  <div class="contact-grid">
+<section style="padding:0;max-width:940px;margin:0 auto">
+  <span class="eyebrow reveal"><span class="eyebrow-num">07</span>Get in touch</span>
+  <h2 class="sec-title reveal">Contact</h2>
+  <p class="contact-lead reveal">Feel free to reach out — I'm always open to interesting conversations and new opportunities. Email or LinkedIn is the fastest way to reach me.</p>
+  <div class="contact-grid reveal">
     <a class="contact-card" href="mailto:kirankamat.mgm@gmail.com">
-      <span class="contact-icon">✉️</span>
+      <span class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </span>
       <div><div class="contact-label">Email</div><div class="contact-val">kirankamat.mgm@gmail.com</div></div>
     </a>
-    <a class="contact-card" href="tel:+919972925056">
-      <span class="contact-icon">📞</span>
-      <div><div class="contact-label">Phone</div><div class="contact-val">+91 99729 25056</div></div>
-    </a>
     <a class="contact-card" href="https://linkedin.com/in/kiranukamath" target="_blank" rel="noopener">
-      <span class="contact-icon">🔗</span>
+      <span class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="4"/><circle cx="7.5" cy="8" r="1"/><path d="M7.5 11v6M11.5 11v6M11.5 13.5c0-1.5 1-2.5 2.3-2.5 1.5 0 2.2 1 2.2 2.8V17"/></svg>
+      </span>
       <div><div class="contact-label">LinkedIn</div><div class="contact-val">kiranukamath</div></div>
     </a>
     <a class="contact-card" href="https://github.com/kiranukamath" target="_blank" rel="noopener">
-      <span class="contact-icon">🐙</span>
+      <span class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.31.678.921.678 1.856 0 1.34-.012 2.421-.012 2.751 0 .268.18.58.688.481A10.02 10.02 0 0022 12.017C22 6.484 17.523 2 12 2z"/></svg>
+      </span>
       <div><div class="contact-label">GitHub</div><div class="contact-val">kiranukamath</div></div>
     </a>
     <a class="contact-card" href="https://kiranukamath.github.io/resume/" target="_blank" rel="noopener">
-      <span class="contact-icon">📄</span>
+      <span class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6M9 9h1"/></svg>
+      </span>
       <div><div class="contact-label">Resume</div><div class="contact-val">View / Download</div></div>
     </a>
   </div>
 </section>
 </div>
-
-<footer>
-  <p>© 2026 Kiran U Kamath · Built with care, deployed on GitHub Pages</p>
-</footer>
-
-</body>
-</html>
