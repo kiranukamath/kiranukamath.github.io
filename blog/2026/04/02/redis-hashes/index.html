@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Redis Hashes: Memory Optimization at Scale | Kiran U Kamath</title>
+<meta name="description" content="How Redis Hashes reduce memory overhead by consolidating keys and leveraging ziplist compression — with real numbers and a gaming leaderboard use case."/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%234f46e5%22/><text x=%2250%22 y=%2266%22 font-size=%2252%22 font-family=%22Arial,sans-serif%22 font-weight=%22800%22 fill=%22white%22 text-anchor=%22middle%22>K</text></svg>"/>
+<script>
+(function(){
+  try{
+    var saved=localStorage.getItem('theme');
+    if(saved){document.documentElement.setAttribute('data-theme',saved);}
+  }catch(e){}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/css/style.css"/>
+<!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Redis Hashes: Memory Optimization at Scale | Kiran U Kamath</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Redis Hashes: Memory Optimization at Scale" />
+<meta name="author" content="Kiran U Kamath" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How Redis Hashes reduce memory overhead by consolidating keys and leveraging ziplist compression — with real numbers and a gaming leaderboard use case." />
+<meta name="twitter:description" property="og:description" content="How Redis Hashes reduce memory overhead by consolidating keys and leveraging ziplist compression — with real numbers and a gaming leaderboard use case." />
+<link rel="canonical" href="https://kiranukamath.github.io/blog/2026/04/02/redis-hashes/" />
+<meta property="og:url" content="https://kiranukamath.github.io/blog/2026/04/02/redis-hashes/" />
+<meta property="og:site_name" content="Kiran U Kamath" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-04-02T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Redis Hashes: Memory Optimization at Scale" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Kiran U Kamath"},"dateModified":"2026-04-02T00:00:00+00:00","datePublished":"2026-04-02T00:00:00+00:00","description":"How Redis Hashes reduce memory overhead by consolidating keys and leveraging ziplist compression — with real numbers and a gaming leaderboard use case.","headline":"Redis Hashes: Memory Optimization at Scale","mainEntityOfPage":{"@type":"WebPage","@id":"https://kiranukamath.github.io/blog/2026/04/02/redis-hashes/"},"url":"https://kiranukamath.github.io/blog/2026/04/02/redis-hashes/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link type="application/atom+xml" rel="alternate" href="https://kiranukamath.github.io/feed.xml" title="Kiran U Kamath" />
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo"><span class="logo-mark">KU</span><span>Kiran U Kamath</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/#skills">Skills</a></li>
+    <li><a href="/#education">Education</a></li>
+    <li><a href="/blog/" class="active">Blog</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false" type="button"><span></span></button>
+  </div>
+</nav>
+
+<div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+
+<article class="post-wrap">
+  <div class="post-container">
+
+    <nav class="post-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="/blog/">Blog</a>
+      <span aria-hidden="true">›</span>
+      <span class="breadcrumb-current">Redis Hashes: Memory Optimization at Scale</span>
+    </nav>
+
+    <header class="post-header">
+      
+      <div class="post-header-tags">
+        <span class="tag tag-accent">Redis</span><span class="tag tag-accent">Backend</span><span class="tag tag-accent">Performance</span><span class="tag tag-accent">System Design</span>
+      </div>
+      
+      <h1>Redis Hashes: Memory Optimization at Scale</h1>
+      <div class="post-meta-row">
+        <time class="post-date" datetime="2026-04-02T00:00:00+00:00">
+          April 2, 2026
+        </time>
+        <span class="meta-dot">·</span>
+        <span class="post-read-time" id="readTime"></span>
+      </div>
+    </header>
+
+    <div class="post-body" id="postBody">
+      <p>In-memory databases like Redis are known for their speed and efficiency, but their memory-centric design makes memory usage a critical factor when scaling an application. As applications grow, developers need to consider memory optimization strategies to keep costs low and performance high.</p>
+
+<p>Redis Hashes are highly useful when you have multiple related fields associated with a single entity. Instead of creating multiple individual keys for each field, you can consolidate them into a single key as a hash with multiple fields.</p>
+
+<p>This blog explores how Redis Hashes save memory, reduce infrastructure costs, when use case is of have multiple related fields associated with a single entity.</p>
+
+<h2 id="redis-a-memory-centric-database">Redis: A Memory-Centric Database</h2>
+
+<p>Redis stores all its data in memory, making it incredibly fast but also sensitive to memory consumption. Efficient memory usage directly impacts the performance and cost of a Redis instance, especially in high-scale systems where millions of keys may be managed.</p>
+
+<p>Every key stored in Redis incurs memory overhead, typically around 40 bytes per key which is primarily attributed to - Key management, Pointers , Hash table buckets. When dealing with a massive number of keys, this overhead can quickly add up, leading to higher memory costs. For systems that require significant scaling, optimizing memory becomes crucial, and Redis provides several data structures to facilitate this, including Hashes, Sets, and Lists.</p>
+
+<h2 id="what-is-redis-hashes">What is Redis Hashes?</h2>
+
+<p>A Redis Hash is a key-value data structure where each Redis key contains a field-value pair, similar to how a dictionary works in programming languages. Unlike storing each field as a separate Redis key, multiple fields can be stored under one key.</p>
+
+<p><strong>Plain Key-Value approach:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User:123:Name -&gt; "John"
+User:123:Age  -&gt; "30"
+</code></pre></div></div>
+
+<p><strong>Using Redis Hash:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User:123 -&gt; { Name: "John", Age: "30" }
+</code></pre></div></div>
+
+<p>With a hash, we store related fields (such as name and age) within a single Redis key, effectively reducing the number of keys and thus, the overhead incurred.</p>
+
+<h2 id="why-use-redis-hashes-instead-of-plain-key-value-pairs">Why Use Redis Hashes Instead of Plain Key-Value Pairs?</h2>
+
+<p>Now that we understand the basics, let’s dig deeper into why Redis Hashes are so effective for memory optimization.</p>
+
+<h3 id="1-reduced-memory-overhead">1. Reduced Memory Overhead</h3>
+
+<p>The memory overhead of managing individual keys adds up quickly in Redis. By combining related fields into a single Redis Hash, you significantly reduce the number of keys in your dataset. This directly reduces the 40-byte overhead per key.</p>
+
+<h3 id="2-ziplist-compression">2. Ziplist Compression</h3>
+
+<p>Redis Hashes are stored as ziplists when they contain fewer than a configurable number of fields (default 512). Ziplists are optimized for memory efficiency, as they store data in a contiguous block of memory, avoiding the overhead of pointers and metadata associated with each field.</p>
+
+<h3 id="3-better-memory-management-in-large-scale-systems">3. Better Memory Management in Large Scale Systems</h3>
+
+<p>In systems where you might have hundreds of millions of key-value pairs, Redis Hashes allow you to organize and compress data more effectively. By reducing the number of keys, Redis spends less time resizing its hash tables, which improves performance and reduces memory fragmentation. Redis hash tables grow and shrink dynamically, and with fewer keys, Redis avoids frequent resizing operations.</p>
+
+<h3 id="4-cost-savings">4. Cost Savings</h3>
+
+<p>One of the most compelling benefits of using Redis Hashes is the cost savings.</p>
+
+<p>Let’s take a real-world example: consider an application with millions of users where each user’s activity is tracked in Redis. If you store each piece of user data as a separate Redis key, the memory overhead grows rapidly. However, by switching to Redis Hashes, you could reduce memory consumption significantly — by as much as <strong>60%</strong>, depending on the dataset.</p>
+
+<p>This means you can run your Redis instance on smaller, less expensive hardware or reduce your cloud infrastructure costs. Memory optimization through Redis Hashes can lead to massive cost savings over time, especially at scale.</p>
+
+<h2 id="challenges-of-using-redis-hashes">Challenges of Using Redis Hashes</h2>
+
+<p>While Redis Hashes offer significant memory optimization benefits, there are a few challenges to be aware of:</p>
+
+<h3 id="memory-usage-for-large-hashes">Memory Usage for Large Hashes</h3>
+
+<p>If a hash grows beyond the <code class="language-plaintext highlighter-rouge">hash-max-ziplist-entries</code> threshold, Redis will convert the ziplist to a traditional hash table, which incurs more memory overhead. While this is generally acceptable for larger datasets, it’s important to monitor hash sizes and adjust the setting accordingly to balance memory efficiency and performance.</p>
+
+<h3 id="granular-ttl">Granular TTL</h3>
+
+<p>In Redis versions before 7, Redis Hashes did not support individual TTLs for fields inside the hash. You can only set an expiration time for the entire hash key, meaning that if one field needs to expire sooner than the others, you cannot achieve that with Redis hashes alone. New in Redis Community Edition 7.4 is the ability to specify an expiration time or a time-to-live (TTL) value for individual hash fields.</p>
+
+<h2 id="use-case-real-time-analytics-in-gaming-leaderboards">Use Case: Real-Time Analytics in Gaming Leaderboards</h2>
+
+<p>Consider an online gaming platform that tracks players’ scores across multiple games. Initially, you might store each player’s score for each game as a separate key:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Player:123:Game:567:Score -&gt; 100
+Player:123:Game:890:Score -&gt; 150
+</code></pre></div></div>
+
+<p>In this scenario, as more players engage with more games, the number of keys in Redis rapidly grows, leading to high memory overhead and management complexity. This explosion of keys makes Redis inefficient as it needs to handle a large number of keys, increasing lookup times and memory usage due to the metadata overhead associated with each key.</p>
+
+<h3 id="optimization-with-redis-hashes">Optimization with Redis Hashes</h3>
+
+<p>To optimize this, you can store scores in a Redis Hash where the player ID is the key, and the game IDs with their respective scores are stored as fields within the hash:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Player:123 -&gt; { Game:567 -&gt; 100, Game:890 -&gt; 150 }
+</code></pre></div></div>
+
+<p>This approach significantly reduces the number of keys, minimizing memory consumption. Instead of maintaining a separate key for each player-game combination, Redis handles just one key per player, with game-specific scores stored inside the hash.</p>
+
+<h3 id="advantages">Advantages</h3>
+
+<p><strong>Memory Efficiency:</strong> You reduce the memory overhead by collapsing multiple keys into one, avoiding the 40-byte per key overhead associated with Redis key management.</p>
+
+<p><strong>Faster Retrieval:</strong> All game scores for a player can be retrieved in one go, improving performance for leaderboard queries or score lookups.</p>
+
+<p><strong>Reduced Complexity:</strong> Managing scores for millions of players and thousands of games becomes more manageable, with fewer keys to handle during data replication or backup processes.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Switching from plain key-value pairs to Redis Hashes is one of the most powerful and effective strategies for optimizing memory usage in Redis. By consolidating multiple related key-value pairs into a single hash, you significantly reduce the number of individual keys in the database, which in turn minimizes overhead and improves overall memory efficiency. Redis also applies additional memory optimizations, such as ziplist compression for small hashes, allowing you to further conserve space.</p>
+
+<p>In large-scale applications where millions of keys are being managed or where high interaction rates are the norm, these optimizations can lead to substantial reductions in memory consumption. This not only results in better system performance but also mitigates memory fragmentation, which can degrade performance over time. More importantly, by lowering memory usage, Redis Hashes enable significant reductions in infrastructure costs, allowing you to achieve greater efficiency with the same hardware or cloud resources.</p>
+
+<p>When used properly, Redis Hashes provide an excellent tool for managing complex datasets efficiently. By grouping related data under a single key, you not only simplify your data model but also ensure that Redis performs optimally even under heavy load. This approach is particularly valuable in memory-constrained environments, or in scenarios where optimizing for cost is a priority.</p>
+
+<p>Ultimately, organizations that adopt Redis Hashes can expect to reduce infrastructure expenses while improving the responsiveness and scalability of their Redis clusters — making it a smart choice for any high-demand, data-intensive application.</p>
+
+    </div>
+
+    <div class="post-author-card">
+      <div class="author-avatar-sm">KU</div>
+      <div class="author-info">
+        <div class="author-name">Kiran U Kamath</div>
+        <div class="author-title">Lead Software Engineer · PayU · Bengaluru</div>
+        <p class="author-bio">Building high-performance backend systems, fraud detection platforms, and distributed systems at scale. Writing about what I learn along the way.</p>
+        <div class="author-social">
+          <a href="https://linkedin.com/in/kiranukamath" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/kiranukamath" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="/">Portfolio</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-share">
+      <div class="post-share-inner">
+        <div class="post-share-text">
+          <div class="post-share-title">Found this useful?</div>
+          <div class="post-share-desc">Share it with someone who might benefit.</div>
+        </div>
+        <div class="share-btns">
+          <a class="btn btn-primary"
+             href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fkiranukamath.github.io%2Fblog%2F2026%2F04%2F02%2Fredis-hashes%2F"
+             target="_blank" rel="noopener noreferrer">
+            Share on LinkedIn
+          </a>
+          
+          <button class="btn btn-outline" onclick="copyLinkedInPost(this)">
+            Copy LinkedIn Draft
+          </button>
+          
+        </div>
+      </div>
+      
+      <p class="copy-confirm" id="copyConfirm" style="display:none">Copied to clipboard! Paste it into your LinkedIn post.</p>
+      
+    </div>
+
+    <div class="post-footer-nav">
+      <a href="/blog/" class="post-back-link">← Back to all posts</a>
+    </div>
+
+  </div>
+</article>
+
+
+<script>
+var linkedInText = "🔍 Deep dive: Redis Hashes for Memory Optimization\n\nIn-memory databases are fast, but at scale every byte counts. I wrote about how Redis Hashes can cut memory usage by up to 60%.\n\nKey takeaways:\n• Each Redis key carries ~40 bytes of overhead\n• Redis Hashes use ziplist compression for small datasets\n• Consolidating keys = massive memory savings at scale\n• Real-world use case: gaming leaderboard optimization\n• TTL gotcha: field-level expiry only in Redis 7.4+\n\nRead the full post: [link]\n\n#Redis #BackendEngineering #SystemDesign #Performance";
+function copyLinkedInPost(btn) {
+  navigator.clipboard.writeText(linkedInText).then(function() {
+    document.getElementById('copyConfirm').style.display = 'block';
+    btn.textContent = 'Copied!';
+    setTimeout(function() {
+      document.getElementById('copyConfirm').style.display = 'none';
+      btn.textContent = 'Copy LinkedIn Draft';
+    }, 3000);
+  });
+}
+</script>
+
+
+<script>
+(function() {
+  // Reading progress bar
+  var bar = document.getElementById('progressBar');
+  if (bar) {
+    window.addEventListener('scroll', function() {
+      var d = document.documentElement;
+      var top = window.scrollY || d.scrollTop;
+      var height = d.scrollHeight - d.clientHeight;
+      bar.style.width = (height > 0 ? (top / height * 100) : 0) + '%';
+    }, { passive: true });
+  }
+
+  // Auto-calculate reading time
+  var body = document.getElementById('postBody');
+  var rt = document.getElementById('readTime');
+  if (body && rt) {
+    var words = body.innerText.trim().split(/\s+/).length;
+    var mins = Math.max(1, Math.round(words / 200));
+    rt.textContent = mins + ' min read';
+  }
+})();
+</script>
+
+
+<footer>
+  <p>© 2026 Kiran U Kamath · Built with care, deployed on GitHub Pages</p>
+</footer>
+
+<script>
+(function(){
+  // Theme toggle
+  var btn=document.getElementById('themeToggle');
+  if(btn){
+    btn.addEventListener('click',function(){
+      var root=document.documentElement;
+      var current=root.getAttribute('data-theme');
+      var isDark = current ? current==='dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var next = isDark ? 'light' : 'dark';
+      root.setAttribute('data-theme',next);
+      try{localStorage.setItem('theme',next);}catch(e){}
+    });
+  }
+
+  // Mobile nav toggle
+  var burger=document.getElementById('navBurger');
+  var links=document.getElementById('navLinks');
+  if(burger && links){
+    burger.addEventListener('click',function(){
+      var open=links.classList.toggle('open');
+      burger.classList.toggle('open',open);
+      burger.setAttribute('aria-expanded',open?'true':'false');
+    });
+    links.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){
+        links.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded','false');
+      });
+    });
+  }
+
+  // Scroll-spy active nav link (home page only)
+  var sections=document.querySelectorAll('section[id]');
+  var navAnchors=document.querySelectorAll('.nav-links a[href*="#"]');
+  if(sections.length && navAnchors.length){
+    var spy=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          navAnchors.forEach(function(a){
+            var isMatch=a.getAttribute('href').indexOf('#'+entry.target.id)>-1;
+            a.classList.toggle('active',isMatch);
+          });
+        }
+      });
+    },{rootMargin:'-45% 0px -45% 0px'});
+    sections.forEach(function(s){spy.observe(s);});
+  }
+
+  // Reveal on scroll
+  var revealEls=document.querySelectorAll('.reveal');
+  if(revealEls.length){
+    var ro=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          ro.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12});
+    revealEls.forEach(function(el){ro.observe(el);});
+  }
+})();
+</script>
+
+</body>
+</html>
