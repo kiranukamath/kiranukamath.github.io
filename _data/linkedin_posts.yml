@@ -4,7 +4,18 @@
 #   topic: "Post title or topic"
 #   url: "https://www.linkedin.com/feed/update/urn:li:activity:..."
 
-
+- date: "2026-11-11"
+  topic: "MySQL - Skip locked with Read Committed"
+  url: "https://lnkd.in/p/d2qutCRj"
+  
+- date: "2026-11-05"
+  topic: "Diskless Kafka with AWS S3"
+  url: "https://lnkd.in/p/dgtdCuh7"
+  
+- date: "2026-11-02"
+  topic: "Agent token reduction techniques"
+  url: "https://lnkd.in/p/d34gi8bD"
+  
 - date: "2026-10-25"
   topic: "eMudhra Certificate security incident"
   url: "https://lnkd.in/p/d_Dj8wFH"
